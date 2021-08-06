@@ -1,0 +1,41 @@
+<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+  <div data-simplebar class="h-100">
+    <!--- Sidemenu -->
+    <div id="sidebar-menu">
+      <!-- Left Menu Start -->
+      <ul class="metismenu list-unstyled" id="side-menu">
+        <li class="menu-title" key="t-menu">Menü</li>
+
+        <li>
+          <a href="javascript: void(0);" class="menu">
+            <i class="bx bxs-bar-chart-alt-2"></i>
+            <span href="/" key="t-dashboards">Cihazlar</span>
+          </a>
+          <ul class="sub-menu">
+            <% cihaz.forEach(function(row){ %>
+            <li>
+              <a href="/:<%= row.id %>" key="t-default"
+                ><%= row.name %>
+                <span
+                  id="state1"
+                  class="spinner-grow text-success float-end d-none"
+                  style="width: 1rem; height: 1rem"
+                ></span>
+                <span
+                  id="state2"
+                  class="spinner-grow float-end"
+                  style="background-color: red; width: 1rem; height: 1rem"
+                ></span>
+              </a>
+            </li>
+            <% })%>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- Sidebar -->
+  </div>
+</div>
+
+<!-- Left Sidebar End -->

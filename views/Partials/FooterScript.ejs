@@ -1,0 +1,20 @@
+<!-- JAVASCRIPT -->
+<script src="public/assets/libs/jquery/jquery.min.js"></script>
+<script src="public/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="public/assets/libs/metismenu/metisMenu.min.js"></script>
+<script src="public/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="public/assets/libs/node-waves/waves.min.js"></script>
+<script>
+  setInterval(function () {
+    var id = JSON.parse($("#cihazId").text());
+    $.get("http://localhost:3001/getState/:" + id, function (response1) {
+      var state1 = document.getElementById("state1");
+      var state2 = document.getElementById("state2");
+
+      if (response1 === "true") {
+        state2.classList.add("d-none");
+        state1.classList.remove("d-none");
+      }
+    });
+  }, 2000);
+</script>

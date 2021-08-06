@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Register | Skote - Nodejs Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      content="Premium Multipurpose Admin & Dashboard Template"
+      name="description"
+    />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="public/assets/images/favicon.png" />
+
+    <%- include ('../Partials/HeaderStyle') %>
+  </head>
+
+  <body>
+    <div class="account-pages pt-sm-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6 col-xl-5">
+            <div class="card overflow-hidden">
+              <div class="bg-primary bg-soft">
+                <div class="row">
+                  <div class="col-7">
+                    <div class="text-primary p-4">
+                      <h5 class="text-primary mt-4">Kayıt ol</h5>
+                      <p class="text-white">
+                        Aşağıdaki bilgileri doldurarak kayıt oluşturun.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-5 align-item-center">
+                    <img
+                      src="public/assets/images/logo-light.png"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="card-body pt-0">
+                <div class="p-2">
+                  <% if(errorMessage) { %>
+                  <div
+                    class="alert alert-danger text-center mb-4 flash"
+                    role="alert"
+                  >
+                    <%= errorMessage %>
+                  </div>
+                  <% } %>
+                  <form
+                    class="form-horizontal"
+                    method="post"
+                    action="/post-register"
+                  >
+                    <div class="mb-3 mt-4">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        name="name"
+                        placeholder="Şirketiniz*"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        placeholder="E-posta*"
+                        required
+                      />
+                    </div>
+
+                    <div class="mb-3">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        name="password"
+                        placeholder="Parola*
+                        "
+                        required
+                      />
+                    </div>
+
+                    <div class="mt-4 d-grid">
+                      <button
+                        class="btn btn-primary waves-effect waves-light"
+                        type="submit"
+                      >
+                        Kayıt ol
+                      </button>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                      <p class="mb-0">
+                        Kişisel verilerinizin işlenmesine ilişkin ayrıntılı
+                        bilgi için
+                        <a href="#" class="text-primary">Aydınlatma Metni</a>'ni
+                        inceleyebilirsiniz.
+                      </p>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 text-center">
+              <div>
+                <p>
+                  Hatırladıysanız
+                  <a href="/login" class="fw-medium text-primary">
+                    Giriş Yap!</a
+                  >
+                </p>
+                <p>© <%= new Date().getFullYear(); %> AiSens</p>
+                <img
+                  src="public/assets/images/expremus.png"
+                  alt=""
+                  width="80px"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include ('../Partials/FooterScript') %>
+
+    <!-- validation init -->
+    <script src="public/assets/js/pages/validation.init.js"></script>
+
+    <!-- App js -->
+    <script src="public/assets/js/app.js"></script>
+  </body>
+</html>

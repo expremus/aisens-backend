@@ -1,0 +1,241 @@
+<%- contentFor('HeaderCss') %> <%- contentFor('breadcrumb') %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="../../public/assets/js/dist/Chart.js"></script>
+<script src="../../public/assets/js/scriptCharts.js"></script>
+
+<div class="row">
+  <div class="col-12">
+    <div
+      class="
+        page-title-box
+        d-sm-flex
+        align-items-center
+        justify-content-between
+      "
+    >
+      <h4 class="mb-sm-0 font-size-18">CANLI TAKİP</h4>
+
+      <div class="page-title-right">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item">
+            <a href="javascript: void(0);">AiSens</a>
+          </li>
+          <li class="breadcrumb-item active">Canlı Takip</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- contentFor('body') %>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title mb-4">Faz A</h4>
+            <div id="gauge-chart1" class="e-charts"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title mb-4">Faz B</h4>
+            <div id="gauge-chart2" class="e-charts"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title mb-4">Faz C</h4>
+            <div id="gauge-chart3" class="e-charts"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="card" style="padding-bottom: 20px">
+            <div class="card-body">
+              <h4 class="card-title mb-2">Faz Grafiği</h4>
+              <canvas id="chart0"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-4" style="margin-top: -68px">
+        <div
+          style="
+            color: rgb(226, 12, 24);
+            font-size: 24px;
+            display: inline;
+            margin-right: 20px;
+            margin-left: 370px;
+          "
+        >
+          <i class="fas fa-tint"></i> Faz A
+        </div>
+        <div
+          style="
+            color: rgb(80, 165, 241);
+            font-size: 24px;
+            display: inline;
+            margin-right: 20px;
+          "
+        >
+          <i class="fas fa-tint"></i> Faz B
+        </div>
+        <div
+          style="
+            color: rgb(52, 195, 143);
+            font-size: 24px;
+            display: inline;
+            margin-right: 20px;
+          "
+        >
+          <i class="fas fa-tint"></i> Faz C
+        </div>
+      </div>
+    </div>
+    <!-- end row -->
+  </div>
+
+  <span id="cihazId" hidden> <%=JSON.stringify(cihazId);%> </span>
+
+  <span id="newTempData1" hidden>
+    <% var newTempData1; %> <% if(newTempData1!='undefined'){%>
+    <%=JSON.stringify(newTempData1);%>
+    <%}else{console.log("newTempData1!='undefined'")}%>
+  </span>
+  <span id="newTempData2" hidden>
+    <% var newTempData2; %> <% if(newTempData2!='undefined'){%>
+    <%=JSON.stringify(newTempData2);%>
+    <%}else{console.log("newTempData2!='undefined'")}%>
+  </span>
+  <span id="newTempData3" hidden>
+    <% var newTempData3; %> <% if(newTempData3!='undefined'){%>
+    <%=JSON.stringify(newTempData3);%>
+    <%}else{console.log("newTempData3!='undefined'")}%>
+  </span>
+
+  <div class="col-xl-12">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" style="padding-bottom: 10px">
+          <div class="card-body">
+            <h4 class="card-title mb-4">İstenilen Zaman Aralığındaki Grafik</h4>
+            <hr />
+
+            <form action="/:<%=cihazId%>" method="GET">
+              <div class="mb-3 row">
+                <div class="row mb-2">
+                  <label for="date1" class="col-md-2 col-form-label">
+                    <i class="fas fa-clock"></i>
+                    Başlangıç Tarihi</label
+                  >
+                  <div class="col-md-3">
+                    <input
+                      class="form-control"
+                      type="date"
+                      name="date1"
+                      id="date1"
+                    />
+                  </div>
+                  <div class="col-md-3">
+                    <input
+                      class="form-control"
+                      type="time"
+                      name="time1"
+                      id="time1"
+                    />
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <label for="date2" class="col-md-2 col-form-label"
+                    ><i class="fas fa-clock"></i> Bitiş Tarihi</label
+                  >
+                  <div class="col-md-3">
+                    <input
+                      class="form-control"
+                      type="date"
+                      name="date2"
+                      id="date2"
+                    />
+                  </div>
+                  <div class="col-md-3">
+                    <input
+                      class="form-control"
+                      type="time"
+                      name="time2"
+                      id="time2"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <input
+                    type="string"
+                    name="cihazId"
+                    id="cihazId"
+                    value="<%=cihazId%>"
+                    hidden
+                  />
+                  <button
+                    type="submit"
+                    class="btn waves-effect col-md-2"
+                    style="
+                      background-color: #b416ef;
+                      color: white;
+                      float: right;
+                    "
+                  >
+                    <i
+                      class="bx bx-check-double font-size-16 align-middle me-2"
+                    ></i>
+                    Göster
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-body">
+                <div
+                  id="line_chart_datalabel"
+                  class="apex-charts"
+                  dir="ltr"
+                ></div>
+              </div>
+            </div>
+            <!--end card-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- end row -->
+
+    <%- contentFor('FooterJs') %>
+    <!-- apexcharts -->
+    <script src="public/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- dashboard init -->
+    <script src="public/assets/js/pages/dashboard.init.js"></script>
+
+    <!-- echarts js -->
+    <script src="public/assets/libs/echarts/echarts.min.js"></script>
+    <!-- echarts init -->
+    <script src="public/assets/js/pages/echarts.init.js"></script>
+
+    <!-- apexcharts -->
+    <script src="public/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- apexcharts init -->
+    <script src="public/assets/js/pages/apexcharts.init.js"></script>
+
+    <%- contentFor('BottomJs') %>
+  </div>
+</div>
